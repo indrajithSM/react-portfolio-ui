@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0a051c];
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-[#1a103c];
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-purple-600 rounded-full;
+  }
+}
+
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 2em rgba(139, 92, 246, 0.5)); }
+  50% { filter: drop-shadow(0 0 0.5em rgba(139, 92, 246, 0.2)); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.nav-link {
+  @apply text-gray-400 hover:text-white transition-all duration-300 relative;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute left-0 bottom-0 w-0 h-0.5 bg-purple-500 transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+.nav-link.active {
+  @apply text-purple-500;
+}
+
+.glass-card {
+  @apply bg-[#1a103c]/30 backdrop-blur-sm border border-purple-900/30 
+         hover:border-purple-500/50 transition-all duration-300;
+}
+
+.glow-effect {
+  @apply relative;
+}
+
+.glow-effect::after {
+  content: '';
+  @apply absolute inset-0 bg-purple-600/20 blur-xl -z-10;
+}
+
+.project-card {
+  @apply bg-[#1a103c]/30 rounded-xl overflow-hidden backdrop-blur-sm
+         border border-[#2a1b4c]/50 hover:border-purple-500/50
+         transition-all duration-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.3)];
+}
+
+.tech-icon {
+  @apply w-16 h-16 p-3 rounded-xl bg-[#1a103c]/50 backdrop-blur-sm
+         border border-[#2a1b4c]/50 hover:border-purple-500/50
+         transition-all duration-300 hover:scale-110;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
+
+.shine-effect {
+  background: linear-gradient(
+    to right,
+    theme('colors.purple.400') 20%,
+    theme('colors.blue.400') 40%,
+    theme('colors.blue.400') 60%,
+    theme('colors.purple.400') 80%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shine 4s linear infinite;
+}
+
+.parallax-bg {
+  @apply fixed inset-0 pointer-events-none;
+  background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 80%);
+}
